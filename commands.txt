@@ -1,0 +1,5 @@
+Test Connection	ansible all -i hosts.ini -m ping
+Run the Script	ansible all -i hosts.ini -m script -a "./setup_vm.sh"
+Copy a File Only	ansible all -i hosts.ini -m copy -a "src=./setup_vm.sh dest=/tmp/setup_vm.sh"
+Check Disk Space	ansible all -i hosts.ini -a "df -h"
+Install a Package	ansible all -i hosts.ini -m apt -a "name=vim state=present" --become
