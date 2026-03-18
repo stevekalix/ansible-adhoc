@@ -1,0 +1,10 @@
+[my_vms]
+# Replace these with your actual VM IP addresses
+192.168.1.10
+192.168.1.11
+
+[my_vms:vars]
+# Replace 'ubuntu' with the actual username on your VMs
+ansible_user=ubuntu
+# If you don't use SSH keys, add this line (not recommended for security):
+# ansible_ssh_pass=your_password
