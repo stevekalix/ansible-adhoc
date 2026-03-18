@@ -1,5 +1,26 @@
-Test Connection	ansible all -i hosts.ini -m ping
-Run the Script	ansible all -i hosts.ini -m script -a "./setup_vm.sh"
-Copy a File Only	ansible all -i hosts.ini -m copy -a "src=./setup_vm.sh dest=/tmp/setup_vm.sh"
-Check Disk Space	ansible all -i hosts.ini -a "df -h"
-Install a Package	ansible all -i hosts.ini -m apt -a "name=vim state=present" --become
+//Test Connection
+ansible all -i hosts.ini -m ping
+//Run the Script	
+ansible all -i hosts.ini -m script -a "./setup_vm.sh"
+//Copy a File Only	
+ansible all -i hosts.ini -m copy -a "src=./setup_vm.sh dest=/tmp/setup_vm.sh"
+//Check Disk Space
+ansible all -i hosts.ini -a "df -h"
+//Install a Package
+ansible all -i hosts.ini -m apt -a "name=vim state=present" --become
+//Check Connectivity: Verify both VMs are reachable.
+ansible all -i hosts.ini -m ping
+//Check Uptime: See how long servers have been running.
+ansible all -i hosts.ini -a "uptime"
+//Check Disk Usage: View human-readable storage details.
+ansible all -i hosts.ini -a "df -h"
+//Check Memory Usage: See available RAM on both nodes.
+ansible all -i hosts.ini -a "free -m"
+//Gather All Facts: Get a detailed JSON report of system specs (IP, OS, CPU).
+ansible all -i hosts.ini -m setup 
+//Manage Files/Dirs: Create, modify, and manage files
+(e.g., creating a dir: ansible all -i hosts.ini -m file -a "path=/opt/app state=directory mode=0755" --become).
+//Transfer Files: Use the copy module to move local files, like config.txt, to the remote destination 
+(ansible all -i hosts.ini -m copy -a "src=./config.txt dest=/tmp/config.txt").
+//Remove Files: Delete remote files using the absent state 
+(ansible all -i hosts.ini -m file -a "path=/tmp/config.txt state=absent"). 
