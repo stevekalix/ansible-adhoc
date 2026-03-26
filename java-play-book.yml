@@ -1,0 +1,18 @@
+---
+- name: Install the java all vm machine
+  hosts: developerserver or all
+  become: true
+  tasks:
+   - name: Install the openjdk-25-jdk
+     apt:
+      name: openjdk-25-jdk
+      state: present
+
+   - name: Chekc the java install or any error
+     command: java -version
+     register: java_openjdk-25-Install 
+     failed_when: false
+   - name: openjdk-25-version
+     debug:
+     msg:"{ java_openjdk-25-Install.stderr if  java_openjdk-25-Install.rc==1 else 'There is error in your command or any dependency error'}"
+     
